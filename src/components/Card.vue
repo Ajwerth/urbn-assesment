@@ -2,7 +2,7 @@
   <div class="card">
     <p>{{cardName}}</p>
     <img :src="cardImg" :alt="cardName"/>
-    <button>+ Add Card</button>
+    <button onclick="">+ Add Card</button>
   </div>
 </template>
 
@@ -16,12 +16,12 @@ export default {
   ],
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .card{
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  max-width: 250px;
+  margin: 10px;
 }
 </style>

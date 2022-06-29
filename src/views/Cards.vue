@@ -7,7 +7,7 @@
     <h1>Cards</h1>
     <div class="cards-container">
     <!--
-      Using card ID for the key, according to the api documentation
+      Using card.id for the key, according to the api documentation
       the ID is unique for each card
     -->
       <Card
@@ -54,15 +54,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-a {
-  color: #42b983;
-}
-.cards-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 595px) {
+    .cards-contianer{
+      justify-content: center;
+    }
+  }
+
+  /* Small screen devices (600px and above) */
+  @media only screen and (min-width: 600px) {
+    .cards-container{
+      justify-content: space-between;
+    }
+  }
 </style>
