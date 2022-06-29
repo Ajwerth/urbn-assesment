@@ -1,34 +1,52 @@
 <template>
-  <div class="hello">
+  <!--
+    Card View, treating this sort of like a HOC fetching data for
+    the cards here and passing it down to the card component
+  -->
+  <div class="wrapper">
     <h1>Cards</h1>
-    <!-- build a simple card component -->
-    <div v-for="card in cards" :key="card.id">
-      <p>{{card.name}}</p>
-      <img :src="card.imageUrl" :alt="card.name"/>
+    <div class="cards-container">
+    <!--
+      Using card ID for the key, according to the api documentation
+      the ID is unique for each card
+    -->
+      <Card
+        v-for="(card) in cards"
+        :key="card.id"
+        :cardName="card.name"
+        :cardImg="card.imageUrl"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Card from '@/components/Card.vue';
 
 export default {
   name: 'Cards',
+  components: {
+    Card,
+  },
   data: () => ({
     cards: [],
+    fetchError: '',
   }),
   mounted() {
     // Fetch Cards From MTG API
     axios.get('https://api.magicthegathering.io/v1/cards')
       .then((response) => {
-        this.cards = [...response.data.cards];
+        // Variant cards don't have image urls, only add cards with image urls to cards array
+        const noVariants = response.data.cards.filter(
+          (card) => (card.imageUrl !== undefined),
+        );
+        this.cards = [...noVariants];
       })
       .catch((error) => {
-        // handle error
+        // Handle error
+        this.fetchError = error;
         console.log(error);
-      })
-      .then(() => {
-        // always executed
       });
   },
 };
@@ -39,15 +57,12 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 a {
   color: #42b983;
+}
+.cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 </style>
