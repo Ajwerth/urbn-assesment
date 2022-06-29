@@ -2,18 +2,27 @@
   <div class="card">
     <p>{{cardName}}</p>
     <img :src="cardImg" :alt="cardName"/>
-    <button onclick="">+ Add Card</button>
+    <button @click="addCardToDeckAction(cardId)">+ Add Card</button>
   </div>
 </template>
 
 <script>
-// simple card component
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Card',
   props: [
     'cardName',
     'cardImg',
+    'cardId',
   ],
+  data: () => ({
+  }),
+  methods: {
+    ...mapActions([
+      'addCardToDeckAction',
+    ]),
+  },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

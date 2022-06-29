@@ -5,13 +5,14 @@ export default createStore({
     deck: [],
   },
   mutations: {
-    ADD_CARD_TO_DECK: (state, card) => {
-      state.deck.push(card);
+    ADD_CARD_TO_DECK: (state, cardId) => {
+      state.deck.push(cardId);
     },
   },
   actions: {
-    addCardToDeckAction(context, card) {
-      context.commit('ADD_CARD_TO_DECK', card);
+    addCardToDeckAction(context, cardId) {
+      context.commit('ADD_CARD_TO_DECK', cardId);
+      console.log(cardId);
     },
   },
   modules: {

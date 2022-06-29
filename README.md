@@ -82,7 +82,9 @@ State Management:
 
 - I feel like its best keep state that only matters to one component in said component, and any state or data that is accessed by more than one component and can't be passed with props, I keep in the store. For this app my plan is to keep the state of the current deck in the store.
 
-## What I would have done differently 
-I wouldn't have used Vue 3, I didn't realize until too late that Bootstrap and Veutify aren't supported for Vue3 yet. Seems like Vuetify will have support by the end of the year.
+## Issues/What I would have done differently 
+- I wouldn't have used Vue 3, I didn't realize until too late that Bootstrap and Veutify aren't supported for Vue3 yet. Seems like Vuetify will have support by the end of the year.
+
+- 
 
 ## What I would do if I were to keep building this app

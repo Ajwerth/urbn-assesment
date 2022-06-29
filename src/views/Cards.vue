@@ -13,6 +13,7 @@
       <Card
         v-for="(card) in cards"
         :key="card.id"
+        :cardId="card.id"
         :cardName="card.name"
         :cardImg="card.imageUrl"
       />
@@ -51,7 +52,6 @@ export default {
   },
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .cards-container{
