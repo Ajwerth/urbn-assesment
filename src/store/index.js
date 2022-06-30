@@ -12,7 +12,6 @@ export default createStore({
   actions: {
     addCardToDeckAction(context, cardId) {
       context.commit('ADD_CARD_TO_DECK', cardId);
-      console.log(cardId);
     },
   },
   modules: {
