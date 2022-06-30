@@ -28,3 +28,22 @@ img {
 .wrapper{
   margin: 0 10%;
 }
+
+.cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 595px) {
+  .cards-contianer{
+    justify-content: center;
+  }
+}
+
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+  .cards-container{
+    justify-content: space-between;
+  }
+}

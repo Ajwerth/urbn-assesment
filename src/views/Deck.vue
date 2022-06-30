@@ -1,17 +1,20 @@
 <template>
-  <div class="deck">
-    <h1>Your Deck</h1>
-    <!-- if there isn't at least one card in deck don't load card component -->
-    <div class="cards-container" v-if="hasSelectedCards">
-      <Card
-        v-for="(card) in cardsInDeck"
-        :key="card.id"
-        :cardId="card.id"
-        :cardName="card.name"
-        :cardImg="card.imageUrl"
-      />
+  <div class="wrapper">
+    <div class="deck">
+      <h1>Your Deck</h1>
+      <!-- if there isn't at least one card in deck don't load card component -->
+      <div class="cards-container" v-if="hasSelectedCards">
+        <Card
+          v-for="(card) in cardsInDeck"
+          :key="card.id"
+          :cardId="card.id"
+          :cardName="card.name"
+          :cardImg="card.imageUrl"
+          :inDeck=true
+        />
+      </div>
+      <p v-if="!hasSelectedCards">No Cards Selected</p>
     </div>
-    <p v-if="!hasSelectedCards">No Cards Selected</p>
   </div>
 </template>
 <script>
@@ -37,12 +40,17 @@ export default {
   methods: {
     // Loop through deck array and fetch the data for each card using cardId
     async fetchCards(deck) {
-      this.cardsInDeck.push(await axios.all(
-        deck.map(
-          (cardId) => axios.get(`https://api.magicthegathering.io/v1/cards/${cardId}`)
-            .then((response) => response.data),
-        ),
-      ));
+      try {
+        // had to create a new variable here to hold the cards array
+        // so I could use the spread opperator when adding the resulst to this.cardsInDeck
+        const cards = await axios.all(deck.map(async (cardId) => {
+          const response = await axios.get(`https://api.magicthegathering.io/v1/cards/${cardId}`);
+          return response.data.card;
+        }));
+        this.cardsInDeck = [...cards];
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
   mounted() {

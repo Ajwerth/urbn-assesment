@@ -5,7 +5,8 @@
   -->
   <div class="wrapper">
     <h1>Cards</h1>
-    <div class="cards-container">
+    <h3>Cards in Deck </h3>
+    <div v-if="numOfCardsSelected > 0" class="cards-container">
     <!--
       Using card.id for the key, according to the api documentation
       the ID is unique for each card
@@ -25,6 +26,7 @@
 <script>
 import axios from 'axios';
 import Card from '@/components/Card.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Cards',
@@ -34,6 +36,7 @@ export default {
   data: () => ({
     cards: [],
     fetchError: '',
+    numCardsSelected: 0,
   }),
   mounted() {
     // Fetch Cards From MTG API
@@ -55,22 +58,5 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-  .cards-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
-  @media only screen and (max-width: 595px) {
-    .cards-contianer{
-      justify-content: center;
-    }
-  }
-
-  /* Small screen devices (600px and above) */
-  @media only screen and (min-width: 600px) {
-    .cards-container{
-      justify-content: space-between;
-    }
-  }
 </style>
