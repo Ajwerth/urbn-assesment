@@ -2,7 +2,7 @@
   <div class="card">
     <p>{{cardName}}</p>
     <img :src="cardImg" :alt="cardName"/>
-    <button @click="addCardToDeckAction(cardId)">+ Add Card</button>
+    <button v-if="!inDeck" @click="addCardToDeckAction(cardId)">+ Add Card</button>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ export default {
     'cardName',
     'cardImg',
     'cardId',
+    'inDeck',
   ],
   data: () => ({
   }),

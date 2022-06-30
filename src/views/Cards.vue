@@ -16,6 +16,7 @@
         :cardId="card.id"
         :cardName="card.name"
         :cardImg="card.imageUrl"
+        :inDeck=false
       />
     </div>
   </div>
