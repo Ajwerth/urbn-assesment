@@ -5,8 +5,8 @@
   -->
   <div class="wrapper">
     <h1>Cards</h1>
-    <h3>Cards in Deck </h3>
-    <div v-if="numOfCardsSelected > 0" class="cards-container">
+    <p>Cards In deck {{this.deck.length}}</p>
+    <div class="cards-container">
     <!--
       Using card.id for the key, according to the api documentation
       the ID is unique for each card
@@ -38,6 +38,7 @@ export default {
     fetchError: '',
     numCardsSelected: 0,
   }),
+  computed: mapState(['deck']),
   mounted() {
     // Fetch Cards From MTG API
     axios.get('https://api.magicthegathering.io/v1/cards')
