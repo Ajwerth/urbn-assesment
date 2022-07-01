@@ -48,8 +48,8 @@ export default {
           return response.data.card;
         }));
         this.cardsInDeck = [...cards];
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        this.fetchError = error;
       }
     },
   },
